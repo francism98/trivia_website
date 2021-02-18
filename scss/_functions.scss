@@ -1,0 +1,22 @@
+// Set Text Color
+@function set-text-color($bgcolor) {
+  @if (lightness($bgcolor) > 50) {
+    @return #333;
+  } @else {
+    @return #fff;
+  }
+}
+
+// Transform Mixin
+@mixin transform($property) {
+  --webkit-transform: $property;
+  -ms-transform: $property;
+  transform: $property;
+}
+
+@mixin btn-transform($property) {
+  cursor: pointer;
+  box-shadow: 0 0.4rem 1.4rem 0 rgba(86, 185, 235, 0.5);
+  transform: $property;
+  transition: transform 150ms;
+}
