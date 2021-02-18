@@ -1,2 +1,2 @@
-# trivia_website
+# Trivia Website
 A website where you can play a trivia game.
