@@ -8,15 +8,9 @@
 }
 
 // Transform Mixin
-@mixin transform($property) {
-  --webkit-transform: $property;
-  -ms-transform: $property;
-  transform: $property;
-}
-
-@mixin btn-transform($property) {
+@mixin btn-transform {
   cursor: pointer;
-  box-shadow: 0 0.4rem 1.4rem 0 rgba(86, 185, 235, 0.5);
-  transform: $property;
+  box-shadow: 0 0.2rem 1.9rem 0 rgba(86, 185, 235, 0.4);
+  transform: translateY(-0.1rem);
   transition: transform 150ms;
 }

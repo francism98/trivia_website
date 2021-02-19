@@ -1,8 +1,12 @@
 const question = document.getElementById('question');
+const choicesContainer = Array.from(document.getElementsByClassName('choice-container'));
 const choices = Array.from(document.getElementsByClassName('choice-text'));
+const progressText = document.getElementById('progressText');
+const scoreText = document.getElementById('score');
+const progressBarFull = document.getElementById('progressBarFull');
 
 let currentQuestion = {};
-let acceptingAnswers = true;
+let acceptingAnswers = false;
 let score = 0;
 let questionCounter = 0;
 let availableQuestions = [];
@@ -41,15 +45,76 @@ const MAX_QUESTIONS = 3;
 startGame = () => {
   questionCounter = 0;
   score = 0;
-  availableQuestions = [...]
+  availableQuestions = [...questions];
+  console.log(availableQuestions);
+  getNewQuestion();
 }
 
-let sum2 = (a, b) => a + b;
+getNewQuestion = () => {
+  // If there are no available questions
+  if (!availableQuestions || availableQuestions.length === 0 || questionCounter >= MAX_QUESTIONS) {
+    localStorage.setItem('mostRecentScore', score);
+    return window.location.assign('./end.html');
+    return;
+  }
+  questionCounter++;
+  progressText.innerText = `Question ${questionCounter}/${MAX_QUESTIONS}`;
+  const questionIndex = Math.floor(Math.random() * availableQuestions.length);
+  currentQuestion = availableQuestions[questionIndex];
+  question.innerText = currentQuestion.question;
+  
+  for (choice of choices) {
+    const choiceNumber = choice.dataset['number'];
+    choice.innerText = currentQuestion['choice' + choiceNumber];
+  }
+  
+  availableQuestions.splice(questionIndex, 1);
+  
+  acceptingAnswers = true;
+}
+for (choice of choices) {
+  choice.parentElement.addEventListener('click', e => {
+    const mouseTarget = e.target;
+    console.log(mouseTarget);
+    if (!acceptingAnswers) return; // Go to the end of page
+    
+    acceptingAnswers = false;
+    var selectedChoice = e.target;
+    // If the selected element is not the parent div, change target to parent div.
+    if (selectedChoice.tagName.toLowerCase() != 'div') {
+      selectedChoice = selectedChoice.parentElement;
+    }
+    selectedChoice = selectedChoice.children[1];
+    // Get the number of the chosen answer
+    const selectedAnswer = selectedChoice.dataset['number'];
+    // Compare selected choice to the right answer
+    const classToApply = selectedAnswer == currentQuestion.answer ? 'correct' : 'incorrect';
+    // Update the progress bar
+    selectedChoice = selectedChoice.parentElement;
+    progressBarFull.style.width = `${(questionCounter / MAX_QUESTIONS) * 100}%`;
+    // Change color to green if correct, red if incorrect. Update score at the same time
+    if (classToApply == 'correct') {
+      selectedChoice.style.backgroundColor = '#77dd77 ';
+      selectedChoice.children[0].style.backgroundColor = '#4ed34e';
+      incrementScore(CORRECT_BONUS);
+    } else if (classToApply == 'incorrect') {
+      selectedChoice.children[0].style.backgroundColor = '#ff392e';
+      selectedChoice.style.backgroundColor = '#ff6961';
+    }
+    // selectedChoice.classList.add(classToApply);
+    
+    setTimeout(() => {
+      selectedChoice.children[0].style.backgroundColor = '#56a5eb';
+      selectedChoice.style.backgroundColor = '#fff';
+      getNewQuestion();
+    }, 500);
+  })
+};
+incrementScore = num => {
+  score += num;
+  scoreText.innerText  = score;
+}
 
-let isPositive = (number) => number >= 0;
-
-let randomNumber = () => Math.random
-
-document.addEventListener('click', () => console.log('Click'))
-
-console.log(sum2(2,1));
+startGame();
+console.log(choices);
+console.log(choicesContainer);

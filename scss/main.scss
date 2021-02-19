@@ -44,7 +44,6 @@ h3 {
 }
 
 // Utilities
-
 .container {
   width: 100vw;
   height: 100vh;
@@ -53,6 +52,7 @@ h3 {
   align-items: center;
   max-width: 80rem;
   margin: 0 auto;
+  padding: 2rem;
 }
 
 .container > * {
@@ -88,33 +88,43 @@ h3 {
   text-decoration: none;
   color: #56a5eb;
   background-color: #fff;
+
+  &:hover {
+    @include btn-transform;
+  }
+
+  &[disabled] {
+    opacity: 0.5;
+  }
+
+  &[disabled]:hover {
+    cursor: not-allowed;
+    box-shadow: none;
+    transform-origin: none;
+  }
 }
 
 .btn:hover {
-  cursor: pointer;
-  box-shadow: 0 0.4rem 1.4rem 0 rgba(86, 185, 235, 0.5);
-  transform: translateY(-0.1rem);
-  transition: transform 150ms;
 }
 
 .btn[disabled]:hover {
-  cursor: not-allowed;
-  box-shadow: none;
-  transform-origin: none;
 }
 
-// GAME.HTML Css
+// game page CSS
 .choice-container {
   display: flex;
   margin-bottom: 0.5rem;
   width: 100%;
   font-size: 1.8rem;
   border: 0.1rem solid rgba(86, 165, 235, 0.25);
-  background-color: #fff;
+  background: #fff;
+  // --webkit-transition: background-color 1000ms;
+  // -ms-transition: background-color 1000ms;
+  transition: background-color 500ms;
 }
 
 .choice-container:hover {
-  @include btn-transform(translateY(-0.1rem));
+  @include btn-transform;
 }
 
 .choice-prefix {
@@ -125,4 +135,79 @@ h3 {
 
 .choice-text {
   padding: 1.5rem;
+}
+
+// .correct {
+//   background: #77dd77;
+// }
+
+// .incorrect {
+//   background: #ff6961;
+// }
+
+// HUD
+#hud {
+  display: flex;
+  justify-content: space-between;
+}
+
+.hud-prefix {
+  text-align: center;
+  font-size: 2rem;
+}
+
+.hud-main-text {
+  text-align: center;
+}
+
+#progressBar {
+  width: 20rem;
+  height: 4rem;
+  border: 0.3rem solid #56a5eb;
+  margin-top: 1.5rem;
+}
+
+#progressBarFull {
+  height: 3.4rem;
+  background-color: #56a5eb;
+  width: 0%;
+  transition: width 300ms;
+}
+
+// End page
+form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+input {
+  margin-bottom: 2rem;
+  width: 20rem;
+  padding: 1.5rem;
+  font-size: 1.8rem;
+  border: none;
+  box-shadow: 0 0.1rem 1.4rem 0 rgba(86, 185, 235, 0.5);
+  text-align: center;
+
+  &::placeholder {
+    // text-align: center;
+    color: #aaa;
+  }
+}
+
+// Highscores page
+#highScoresList {
+  list-style: none;
+  margin-bottom: 4rem;
+}
+
+.high-score {
+  font-size: 2.8rem;
+  margin-bottom: 0.5rem;
+
+  &:hover {
+    transform: scale(1.025);
+  }
 }
