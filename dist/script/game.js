@@ -4,6 +4,15 @@ const choices = Array.from(document.getElementsByClassName('choice-text'));
 const progressText = document.getElementById('progressText');
 const scoreText = document.getElementById('score');
 const progressBarFull = document.getElementById('progressBarFull');
+const loader = document.getElementById('loader');
+const game = document.getElementById('game');
+
+// Audio
+const bleepRight = new Audio();
+bleepRight
+const bleepWrong = new Audio();
+bleepRight.src = './audio/correct.wav';
+bleepWrong.src = './audio/incorrect_choice.wav';
 
 let currentQuestion = {};
 let acceptingAnswers = false;
@@ -11,36 +20,49 @@ let score = 0;
 let questionCounter = 0;
 let availableQuestions = [];
 
-let questions = [
-  {
-    question: "Inside which HTML element do we put the Javascript?",
-    choice1: "<script>",
-    choice2: "<javacsript>",
-    choice3: "<js>",
-    choice4: "<scripting>",
-    answer: 1
-  },
-  {
-    question: "What is the correct syntax for referring to an external script called xxx.js?",
-    choice1: "<script href='xxx.js>",
-    choice2: "<script name='xxx.js'>",
-    choice3: "<script src='xxx.js'>",
-    choice4: "<script file='xxx.js'>",
-    answer: 3
-  },
-  {
-    question: "How do you write 'Hello World' in an alert box?",
-    choice1: "msgBox('Hello World');",
-    choice2: "alertBox('Hello World');",
-    choice3: "msg('Hello World');",
-    choice4: "alert('Hello World');",
-    answer: 4
-  }
-]
+let questions = [];
 
 // CONSTANTS
 const CORRECT_BONUS = 10;
-const MAX_QUESTIONS = 3;
+const MAX_QUESTIONS = 10;
+
+// Get questions from questions.json
+fetch(`https://opentdb.com/api.php?amount=10&category=9&difficulty=easy&type=multiple`).then(res => {
+  console.log(res); // get and log response from json file
+  return res.json();
+  })
+  .then (loadedQuestions => {
+    questions = loadedQuestions.results.map( loadedQuestion => {
+      const formattedQuestion = {
+        question: decodeHtml(loadedQuestion.question)
+      };
+      const answerChoices = [...loadedQuestion.incorrect_answers];
+      console.log('answerChoices')
+      console.log(answerChoices)
+      formattedQuestion.answer = Math.floor(Math.random() * 3) + 1;
+      answerChoices.splice(formattedQuestion.answer - 1, 0, loadedQuestion.correct_answer);
+
+      // Decode all choices from 
+      answerChoices.forEach((choice, index) => {
+        formattedQuestion['choice' + (index + 1)] = decodeHtml(choice);
+      })
+
+      return formattedQuestion;
+      // console.log('formattedQuestion');
+      // console.log(formattedQuestion);
+    })
+    startGame();
+  })
+  .catch( err => {
+    console.error(err);
+  });
+
+// Function to decode encoded text from json/API
+function decodeHtml(html) {
+  var txt = document.createElement("textarea");
+  txt.innerHTML = html;
+  return txt.value;
+}
 
 startGame = () => {
   questionCounter = 0;
@@ -48,30 +70,39 @@ startGame = () => {
   availableQuestions = [...questions];
   console.log(availableQuestions);
   getNewQuestion();
+  game.classList.remove('hidden');
+  loader.classList.add('hidden');
 }
 
 getNewQuestion = () => {
   // If there are no available questions
   if (!availableQuestions || availableQuestions.length === 0 || questionCounter >= MAX_QUESTIONS) {
     localStorage.setItem('mostRecentScore', score);
-    return window.location.assign('./end.html');
-    return;
+    setTimeout(() => {
+      return window.location.assign('./end.html');
+    }, 1000);
   }
-  questionCounter++;
+  // Do not count if no more questions. this is not necessary but added because setTimeout for return window causes the questionCounter to increment 
+  if (questionCounter != MAX_QUESTIONS) {
+    questionCounter++;
+  }
+  // Display the question number
   progressText.innerText = `Question ${questionCounter}/${MAX_QUESTIONS}`;
+  // Choose a question by random order
   const questionIndex = Math.floor(Math.random() * availableQuestions.length);
   currentQuestion = availableQuestions[questionIndex];
   question.innerText = currentQuestion.question;
-  
+  // Display the current question choices to the four choices div
   for (choice of choices) {
     const choiceNumber = choice.dataset['number'];
     choice.innerText = currentQuestion['choice' + choiceNumber];
   }
-  
+  // Remove the current question from the availableQuestions
   availableQuestions.splice(questionIndex, 1);
-  
   acceptingAnswers = true;
 }
+
+// Click listener
 for (choice of choices) {
   choice.parentElement.addEventListener('click', e => {
     const mouseTarget = e.target;
@@ -84,37 +115,48 @@ for (choice of choices) {
     if (selectedChoice.tagName.toLowerCase() != 'div') {
       selectedChoice = selectedChoice.parentElement;
     }
+    // Look at the choice-text and get its dataset number
     selectedChoice = selectedChoice.children[1];
-    // Get the number of the chosen answer
     const selectedAnswer = selectedChoice.dataset['number'];
-    // Compare selected choice to the right answer
-    const classToApply = selectedAnswer == currentQuestion.answer ? 'correct' : 'incorrect';
     // Update the progress bar
     selectedChoice = selectedChoice.parentElement;
     progressBarFull.style.width = `${(questionCounter / MAX_QUESTIONS) * 100}%`;
-    // Change color to green if correct, red if incorrect. Update score at the same time
-    if (classToApply == 'correct') {
-      selectedChoice.style.backgroundColor = '#77dd77 ';
-      selectedChoice.children[0].style.backgroundColor = '#4ed34e';
-      incrementScore(CORRECT_BONUS);
-    } else if (classToApply == 'incorrect') {
-      selectedChoice.children[0].style.backgroundColor = '#ff392e';
-      selectedChoice.style.backgroundColor = '#ff6961';
-    }
-    // selectedChoice.classList.add(classToApply);
+    // Check if selected answer is correct or incorrect
+    const classToApply = selectedAnswer == currentQuestion.answer ? 'correct' : 'incorrect';
+
+    // Apply styles & animation of correct/incorrect choices
+    applyAnswerStyles(classToApply, selectedChoice);
     
     setTimeout(() => {
-      selectedChoice.children[0].style.backgroundColor = '#56a5eb';
-      selectedChoice.style.backgroundColor = '#fff';
       getNewQuestion();
-    }, 500);
+    }, 800);
   })
 };
+
+// Increment Score if the answer is correct
 incrementScore = num => {
   score += num;
   scoreText.innerText  = score;
 }
 
-startGame();
-console.log(choices);
-console.log(choicesContainer);
+// Apply styles/animation to the corresponding result
+applyAnswerStyles = (result, selectedChoice) => {
+  
+  // Change color to green if correct, red if incorrect. Update score at the same time
+  if (result == 'correct') {
+    selectedChoice.style.backgroundColor = '#77dd77';
+    selectedChoice.children[0].style.backgroundColor = '#4ed34e';
+    bleepRight.play();
+    incrementScore(CORRECT_BONUS);
+  } else if (result == 'incorrect') {
+    selectedChoice.style.animation = 'shake 0.42s';
+    selectedChoice.children[0].style.backgroundColor = '#ff392e';
+    selectedChoice.style.backgroundColor = '#ff6961';
+    bleepWrong.play();
+  }
+  setTimeout(() => {
+    selectedChoice.style.animation = 0;
+    selectedChoice.children[0].style.backgroundColor = '#56a5eb';
+    selectedChoice.style.backgroundColor = '#fff';
+  }, 600);
+}

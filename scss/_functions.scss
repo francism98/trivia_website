@@ -1,16 +1,58 @@
 // Set Text Color
-@function set-text-color($bgcolor) {
-  @if (lightness($bgcolor) > 50) {
-    @return #333;
-  } @else {
-    @return #fff;
-  }
-}
+// @function set-text-color($bgcolor) {
+//   @if (lightness($bgcolor) > 50) {
+//     @return #333;
+//   } @else {
+//     @return #fff;
+//   }
+// }
 
 // Transform Mixin
 @mixin btn-transform {
   cursor: pointer;
-  box-shadow: 0 0.2rem 1.9rem 0 rgba(86, 185, 235, 0.4);
-  transform: translateY(-0.1rem);
+  box-shadow: 1pt 3pt 2pt 1pt rgba(86, 185, 235, 0.4);
+  transform: translateY(-0.25rem);
   transition: transform 150ms;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+    filter: hue-rotate(360deg);
+  }
+}
+
+// Fadein animation
+@keyframes fadeIn {
+  0% {
+    top: 450px;
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    top: 350px;
+  }
+}
+// Shake animation
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
+  }
 }

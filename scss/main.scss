@@ -11,19 +11,12 @@
   font-family: $font-stack;
   margin: 0;
   padding: 0;
-  color: #333;
-}
-
-h1,
-h2,
-h3,
-h4 {
-  margin-bottom: 1rem;
+  color: $dark-color;
 }
 
 h1 {
   font-size: 5.4rem;
-  color: #56a5eb;
+  color: $primary-color;
   margin-bottom: 5rem;
 }
 
@@ -43,6 +36,10 @@ h3 {
   font-weight: 500;
 }
 
+h3,
+h4 {
+  margin-bottom: 1rem;
+}
 // Utilities
 .container {
   width: 100vw;
@@ -53,6 +50,36 @@ h3 {
   max-width: 80rem;
   margin: 0 auto;
   padding: 2rem;
+}
+
+.text {
+  &-primary {
+    color: $primary-color;
+  }
+  &-secondary {
+    color: $secondary-color;
+  }
+  &-light {
+    color: $light-color;
+  }
+  &-dark {
+    color: $dark-color;
+  }
+}
+
+.bg {
+  &-primary {
+    background-color: $primary-color;
+  }
+  &-secondary {
+    background-color: $secondary-color;
+  }
+  &-light {
+    background-color: $light-color;
+  }
+  &-dark {
+    background-color: $dark-color;
+  }
 }
 
 .container > * {
@@ -83,14 +110,25 @@ h3 {
   padding: 1rem 0;
   width: 20rem;
   text-align: center;
-  border: 0.1rem solid #56a5eb;
+  border: 0.1rem solid $primary-color;
   margin-bottom: 1rem;
   text-decoration: none;
-  color: #56a5eb;
+  color: $primary-color;
   background-color: #fff;
+  user-select: none; /* supported by Chrome and Opera */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  -webkit-user-drag: none;
 
   &:hover {
     @include btn-transform;
+  }
+
+  &:active {
+    background-color: #e8f4f8;
+    transform: scale(0.95);
   }
 
   &[disabled] {
@@ -104,13 +142,7 @@ h3 {
   }
 }
 
-.btn:hover {
-}
-
-.btn[disabled]:hover {
-}
-
-// game page CSS
+// Game page CSS
 .choice-container {
   display: flex;
   margin-bottom: 0.5rem;
@@ -121,15 +153,26 @@ h3 {
   // --webkit-transition: background-color 1000ms;
   // -ms-transition: background-color 1000ms;
   transition: background-color 500ms;
-}
+  user-select: none; /* supported by Chrome and Opera */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  -webkit-user-drag: none;
 
-.choice-container:hover {
-  @include btn-transform;
+  &:hover {
+    @include btn-transform;
+  }
+
+  &:active {
+    background-color: #add8e6;
+    transform: scale(0.97);
+  }
 }
 
 .choice-prefix {
   padding: 1.5rem 2.5rem;
-  background: #56a5eb;
+  background: $primary-color;
   color: #fff;
 }
 
@@ -137,13 +180,17 @@ h3 {
   padding: 1.5rem;
 }
 
-// .correct {
-//   background: #77dd77;
-// }
-
-// .incorrect {
-//   background: #ff6961;
-// }
+// Page Loader
+.loader {
+  border: 10px solid;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border-color: orange transparent transparent;
+  animation: spin 0.5s linear infinite;
+  position: fixed;
+  margin: auto;
+}
 
 // HUD
 #hud {
@@ -163,15 +210,15 @@ h3 {
 #progressBar {
   width: 20rem;
   height: 4rem;
-  border: 0.3rem solid #56a5eb;
+  border: 0.3rem solid $primary-color;
   margin-top: 1.5rem;
-}
 
-#progressBarFull {
-  height: 3.4rem;
-  background-color: #56a5eb;
-  width: 0%;
-  transition: width 300ms;
+  #progressBarFull {
+    height: 3.4rem;
+    background-color: $primary-color;
+    width: 0%;
+    transition: width 300ms;
+  }
 }
 
 // End page
@@ -182,20 +229,123 @@ form {
   align-items: center;
 }
 
+#endContainer {
+  margin: 100px auto;
+  max-width: 450px;
+  max-height: 650px;
+  display: flex;
+  background: #fff;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  border-radius: 40px;
+  box-shadow: 0 0.2rem 1rem 0 rgba(86, 185, 235, 0.5);
+}
+
+// label {
+//   color: $primary-color;
+//   // letter-spacing: 1px;
+//   font-size: 2.5rem;
+//   font-weight: bold;
+//   margin-bottom: 1rem;
+// }
+
+#end {
+  &Hero {
+    text-align: center;
+    width: 100%;
+    font-size: 8rem;
+    color: $secondary-color;
+    margin-bottom: 4rem;
+  }
+  &Descr {
+    font-size: 3rem;
+    font-weight: 900;
+    margin-bottom: 1rem;
+  }
+  span {
+    &#finalScore {
+      font-size: 5.4rem;
+      font-weight: 900;
+      color: $secondary-color;
+      margin-bottom: 3rem;
+      border-radius: 30px;
+      background-color: rgba(152, 251, 152, 0.1);
+      text-align: center;
+      width: 70%;
+      box-shadow: inset 0 0 4px #8fbc8f;
+    }
+  }
+}
+
 input {
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
   width: 20rem;
   padding: 1.5rem;
   font-size: 1.8rem;
   border: none;
-  box-shadow: 0 0.1rem 1.4rem 0 rgba(86, 185, 235, 0.5);
+  border-radius: 10px;
+  border: 2pt solid rgba(0, 255, 255, 0.8);
   text-align: center;
-
+  // font-weight: bold;
+  outline: none;
   &::placeholder {
     // text-align: center;
-    color: #aaa;
+    color: #adadad;
   }
 }
+
+.alertBgOverlay {
+  background: rgba(114, 188, 212, 0.8);
+  position: absolute;
+  display: none;
+  width: 100vw;
+  height: 100vh;
+  z-index: 8;
+  overflow: hidden;
+  transition: background 700ms ease;
+}
+
+.alertBox {
+  position: absolute;
+  display: none;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 340px;
+  height: 55px;
+  background: #fff;
+  padding-right: 10px;
+  box-shadow: 0 0.4rem 1.5rem 0 rgba(0, 0, 0, 0.3);
+  border: #4ed34e solid 1px;
+  border-radius: 13px;
+  z-index: 10;
+  animation: fadeIn ease 1000ms;
+
+  .alertStatus {
+    text-align: center;
+    font-size: 3.5rem;
+    width: 60px;
+    height: 100%;
+    color: #fff;
+    border-radius: 11px 0 0 11px;
+  }
+  .alertText {
+    color: $secondary-color;
+    font-size: 2.5rem;
+    font-weight: bold;
+    padding: 0 10px;
+    padding-top: 0;
+  }
+  .success {
+    background: #4ed34e;
+  }
+  .error {
+    background: #ff6961;
+  }
+}
+
+/* The close button */
 
 // Highscores page
 #highScoresList {
@@ -210,4 +360,12 @@ input {
   &:hover {
     transform: scale(1.025);
   }
+}
+
+.hsInfo {
+  font-size: 2.8rem;
+}
+
+.li {
+  // word-spacing: 150px;
 }

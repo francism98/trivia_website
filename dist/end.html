@@ -6,19 +6,37 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./css/main.css">
-  <title>Congrats!</title>
+  <link rel="stylesheet" href="./css/main.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="./icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./icons/favicon-16x16.png">
+  <link rel="manifest" href="./icons/site.webmanifest">
+  <title>Trivia Time | Completed</title>
 </head>
 
 <body>
-  <div class="container">
-    <div id="end" class="flex-center flex-column">
-      <h1 id="finalScore"></h1>
-      <form>
-        <input type="text" name="username" id="username" placeholder="username">
-        <button type="submit" class="btn" id="saveScoreBtn" onclick="saveHighScore(event)" disabled>Save Score</button>
-      </form>
-      <a href="./game.html" class="btn">Play Again</a>
-      <a href="./" class="btn">Main Menu</a>
+  <div id="endContainer">
+    <div class="alertBgOverlay" id="alertBgOverlay">
+    </div>
+    <div class="alertBox" id="alertBox">
+      <p class="alertStatus success">&#10004</p>
+      <p class="alertText">Saved Successfully!</p>
+    </div>
+    <div class="container">
+      <div id="end" class="flex-center flex-column">
+        <h1 id="endHero">Complete</h1>
+        <h2 id="endDescr" class="text-primary">SCORE</h2>
+        <span id="finalScore"></span>
+        <form>
+          <!-- <label for="username">Enter your name</label> -->
+          <input type="text" name="username" id="username" placeholder="Enter Your Name...">
+          <button type="submit" class="btn" id="saveScoreBtn" disabled onclick="saveHighScore(event);">Save
+            Score</button>
+          <!-- disabled -->
+        </form>
+        <a href="./game.html" class="btn">Play Again</a>
+        <a href="./" class="btn">Main Menu</a>
+      </div>
     </div>
   </div>
   <script src="./script/end.js"></script>
