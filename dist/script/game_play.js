@@ -91,6 +91,11 @@ getNewQuestion = () => {
   // Choose a question by random order
   const questionIndex = Math.floor(Math.random() * availableQuestions.length);
   currentQuestion = availableQuestions[questionIndex];
+  if (currentQuestion.question.length > 80) {
+    question.style.fontSize = '3.4rem';
+  } else if (currentQuestion.question.length > 60) {
+    question.style.fontSize = '3.7rem';
+  }
   question.innerText = currentQuestion.question;
   // Display the current question choices to the four choices div
   for (choice of choices) {
@@ -135,8 +140,20 @@ for (choice of choices) {
 
 // Increment Score if the answer is correct
 incrementScore = num => {
+  console.log(scoreText.style.color);
   score += num;
-  scoreText.innerText  = score;
+  const scoreUpdate = () => {
+    count = +scoreText.innerText;
+    if (count < score) {
+      scoreText.style.color = '#77dd77';
+      scoreText.innerText = count + 1;
+      setTimeout(scoreUpdate, 50);
+    } else {
+      scoreText.style.color = '#56a5eb';
+      scoreText.innerText  = score;
+    }
+  }
+  scoreUpdate();
 }
 
 // Apply styles/animation to the corresponding result

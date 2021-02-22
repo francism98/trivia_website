@@ -11,7 +11,15 @@
 @mixin btn-transform {
   cursor: pointer;
   box-shadow: 1pt 3pt 2pt 1pt rgba(86, 185, 235, 0.4);
-  transform: translateY(-0.25rem);
+  transform: translateY(-0.3rem);
+  transition: transform 150ms;
+}
+
+@mixin btn-transform2 {
+  cursor: pointer;
+  box-shadow: 0pt 0pt 2pt 2pt #add8e6;
+  // transform: translateY(-0.6rem);
+  transform: scale(1.08);
   transition: transform 150ms;
 }
 
@@ -54,5 +62,83 @@
   40%,
   60% {
     transform: translate3d(4px, 0, 0);
+  }
+}
+
+@keyframes clockwise {
+  0% {
+    top: -5px;
+    left: 0;
+  }
+  12% {
+    top: -2px;
+    left: 2px;
+  }
+  25% {
+    top: 0;
+    left: 5px;
+  }
+  37% {
+    top: 2px;
+    left: 2px;
+  }
+  50% {
+    top: 5px;
+    left: 0;
+  }
+  62% {
+    top: 2px;
+    left: -2px;
+  }
+  75% {
+    top: 0;
+    left: -5px;
+  }
+  87% {
+    top: -2px;
+    left: -2px;
+  }
+  100% {
+    top: -5px;
+    left: 0;
+  }
+}
+
+@keyframes counterclockwise {
+  0% {
+    top: -5px;
+    right: 0;
+  }
+  12% {
+    top: -2px;
+    right: 2px;
+  }
+  25% {
+    top: 0;
+    right: 5px;
+  }
+  37% {
+    top: 2px;
+    right: 2px;
+  }
+  50% {
+    top: 5px;
+    right: 0;
+  }
+  62% {
+    top: 2px;
+    right: -2px;
+  }
+  75% {
+    top: 0;
+    right: -5px;
+  }
+  87% {
+    top: -2px;
+    right: -2px;
+  }
+  100% {
+    top: -5px;
+    right: 0;
   }
 }

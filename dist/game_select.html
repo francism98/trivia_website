@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./css/main.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="./icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./icons/favicon-16x16.png">
+  <link rel="manifest" href="./icons/site.webmanifest">
+  <script src="https://kit.fontawesome.com/eff18e0742.js" crossorigin="anonymous"></script>
+  <title>Trivia Master | Play</title>
+</head>
+
+<body>
+  <div class="logo"></div>
+  <div class="container flex-column" id="setup">
+    <div class="setup category-container">
+      <h2>Category</h2>
+      <div class="category" data-category="21">
+        <div class="category-displayed">
+          <i class="fas fa-basketball-ball"></i>
+        </div>
+        <div class="category-hidden">
+          <p>Sports</p>
+        </div>
+      </div>
+      <div class="category" data-category="23">
+        <div class="category-displayed">
+          <i class="fas fa-atlas"></i>
+        </div>
+        <div class="category-hidden">
+          <p>History</p>
+        </div>
+      </div>
+      <div class="category" data-category="15">
+        <div class="category-displayed">
+          <i class="fas fa-gamepad"></i>
+        </div>
+        <div class="category-hidden">
+          <p>Video</p>
+          <p> Games</p>
+        </div>
+      </div>
+      <div class="category" data-category="27">
+        <div class="category-displayed">
+          <i class="fas fa-paw"></i>
+        </div>
+        <div class="category-hidden">
+          <p>Animals</p>
+        </div>
+      </div>
+      <div class="category" data-category="17">
+        <div class="category-displayed">
+          <i class="fas fa-atom"></i>
+        </div>
+        <div class="category-hidden">
+          <p>Science</p>
+          <p>& Nature</p>
+        </div>
+      </div>
+      <div class="category" data-category="12">
+        <div class="category-displayed">
+          <i class="fas fa-music"></i>
+        </div>
+        <div class="category-hidden">
+          <p>Music</p>
+        </div>
+      </div>
+      <div class="category" data-category="11">
+        <div class="category-displayed">
+          <i class="fas fa-film"></i>
+        </div>
+        <div class="category-hidden">
+          <p>Film</p>
+        </div>
+      </div>
+      <div class="category" data-category="22">
+        <div class="category-displayed">
+          <i class="fas fa-globe-americas"></i>
+        </div>
+        <div class="category-hidden">
+          <p class="long-text">Geography</p>
+        </div>
+      </div>
+    </div>
+    <div class="setup length-container">
+      <h2>Quiz length</h2>
+      <div class="length btn" data-length="10">Short</div>
+      <div class="length btn" data-length="20">Medium</div>
+      <div class="length btn" data-length="30">Long</div>
+    </div>
+    <div class="setup difficulty-container">
+      <h2>Difficulty</h2>
+      <div class="difficulty btn">Easy</div>
+      <div class="difficulty btn">Moderate</div>
+      <div class="difficulty btn">Hard</div>
+    </div>
+    <div id="pageChange">
+      <a href="./" class="btn btn-scale1-2">Back</a>
+      <a href="./game_play.html" class="btn btn-scale1-2">Start</a>
+    </div>
+  </div>
+  <script src="./script/game_select.js"></script>
+</body>
+
+</html>
