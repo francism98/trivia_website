@@ -8,6 +8,9 @@ const mostRecentScore = localStorage.getItem('mostRecentScore');
 // Audio
 const endChime = new Audio();
 endChime.src = './audio/complete2.mp3';
+setTimeout(() => {
+  endChime.play();
+}, 500);
 
 const highScores = JSON.parse(localStorage.getItem('highScores'))  || [];
 const MAX_HIGH_SCORES = 20;
@@ -19,7 +22,6 @@ finalScore.innerText = mostRecentScore;
 // Position results container
 const endContainer = document.getElementById('endContainer');
 console.log(endContainer);
-endChime.play();
 
 username.addEventListener('keyup', () => {
   console.log(username.value.toLowerCase());
