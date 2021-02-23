@@ -20,14 +20,21 @@ let score = 0;
 let questionCounter = 0;
 let availableQuestions = [];
 
+let fetchCategory = sessionStorage.getItem('category');
+let fetchLength = sessionStorage.getItem('length');
+let fetchDifficulty = sessionStorage.getItem('difficulty');
+
 let questions = [];
 
 // CONSTANTS
 const CORRECT_BONUS = 10;
-const MAX_QUESTIONS = 10;
+const MAX_QUESTIONS = fetchLength;
 
-// Get questions from questions.json
-fetch(`https://opentdb.com/api.php?amount=10&category=9&difficulty=easy&type=multiple`).then(res => {
+// Generate url from variables category, length, and difficulty
+opentdbLink = `https://opentdb.com/api.php?amount=${fetchLength}&category=${fetchCategory}&difficulty=${fetchDifficulty}&type=multiple`
+
+// Get questions from OpenTriviaDB API URL
+fetch(opentdbLink).then(res => {
   console.log(res); // get and log response from json file
   return res.json();
   })

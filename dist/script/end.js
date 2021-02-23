@@ -8,7 +8,6 @@ const mostRecentScore = localStorage.getItem('mostRecentScore');
 // Audio
 const endChime = new Audio();
 endChime.src = './audio/complete.mp3';
-endChime.play();
 
 const highScores = JSON.parse(localStorage.getItem('highScores'))  || [];
 const MAX_HIGH_SCORES = 20;
@@ -20,24 +19,25 @@ finalScore.innerText = mostRecentScore;
 // Position results container
 const endContainer = document.getElementById('endContainer');
 console.log(endContainer);
+endChime.play();
 
 username.addEventListener('keyup', () => {
   console.log(username.value.toLowerCase());
   saveScoreBtn.disabled = !username.value;
   ;})
   
-saveHighScore = e => {
-  console.log("Clicked the save button!");
-  e.preventDefault();
-  
-  const score = {
-    score: mostRecentScore,
-    name: username.value.toLowerCase()
-  };
-  highScores.push(score);
-  highScores.sort( (a,b) => b.score - a.score)
-  highScores.splice(5);
-  
+  saveHighScore = e => {
+    console.log("Clicked the save button!");
+    e.preventDefault();
+    
+    const score = {
+      score: mostRecentScore,
+      name: username.value.toLowerCase()
+    };
+    highScores.push(score);
+    highScores.sort( (a,b) => b.score - a.score)
+    highScores.splice(5);
+    
   
   localStorage.setItem('highScores', JSON.stringify(highScores));
   console.log(localStorage);

@@ -14,75 +14,75 @@
   <title>Trivia Master | Play</title>
 </head>
 
-<body>
+<body id="game-setup">
   <div class="logo"></div>
   <div class="container flex-column" id="setup">
     <div class="setup category-container">
       <h2>Category</h2>
       <div class="category" data-category="21">
         <div class="category-displayed">
-          <i class="fas fa-basketball-ball"></i>
+          <i class="text-primary fas fa-basketball-ball"></i>
         </div>
         <div class="category-hidden">
-          <p>Sports</p>
+          <p class="text-primary">Sports</p>
         </div>
       </div>
       <div class="category" data-category="23">
         <div class="category-displayed">
-          <i class="fas fa-atlas"></i>
+          <i class="text-primary fas fa-atlas"></i>
         </div>
         <div class="category-hidden">
-          <p>History</p>
+          <p class="text-primary">History</p>
         </div>
       </div>
       <div class="category" data-category="15">
         <div class="category-displayed">
-          <i class="fas fa-gamepad"></i>
+          <i class="text-primary fas fa-gamepad"></i>
         </div>
         <div class="category-hidden">
-          <p>Video</p>
-          <p> Games</p>
+          <p class="text-primary">Video</p>
+          <p class="text-primary"> Games</p>
         </div>
       </div>
       <div class="category" data-category="27">
         <div class="category-displayed">
-          <i class="fas fa-paw"></i>
+          <i class="text-primary fas fa-paw"></i>
         </div>
         <div class="category-hidden">
-          <p>Animals</p>
+          <p class="text-primary">Animals</p>
         </div>
       </div>
       <div class="category" data-category="17">
         <div class="category-displayed">
-          <i class="fas fa-atom"></i>
+          <i class="text-primary fas fa-atom"></i>
         </div>
         <div class="category-hidden">
-          <p>Science</p>
-          <p>& Nature</p>
+          <p class="text-primary">Science</p>
+          <p class="text-primary">& Nature</p>
         </div>
       </div>
       <div class="category" data-category="12">
         <div class="category-displayed">
-          <i class="fas fa-music"></i>
+          <i class="text-primary fas fa-music"></i>
         </div>
         <div class="category-hidden">
-          <p>Music</p>
+          <p class="text-primary">Music</p>
         </div>
       </div>
       <div class="category" data-category="11">
         <div class="category-displayed">
-          <i class="fas fa-film"></i>
+          <i class="text-primary fas fa-film"></i>
         </div>
         <div class="category-hidden">
-          <p>Film</p>
+          <p class="text-primary">Film</p>
         </div>
       </div>
       <div class="category" data-category="22">
         <div class="category-displayed">
-          <i class="fas fa-globe-americas"></i>
+          <i class="text-primary fas fa-globe-americas"></i>
         </div>
         <div class="category-hidden">
-          <p class="long-text">Geography</p>
+          <p class="text-primary long-text">Geography</p>
         </div>
       </div>
     </div>
@@ -94,16 +94,16 @@
     </div>
     <div class="setup difficulty-container">
       <h2>Difficulty</h2>
-      <div class="difficulty btn">Easy</div>
-      <div class="difficulty btn">Moderate</div>
-      <div class="difficulty btn">Hard</div>
+      <div class="difficulty btn" data-difficulty="easy">Easy</div>
+      <div class="difficulty btn" data-difficulty="medium">Moderate</div>
+      <div class="difficulty btn" data-difficulty="hard">Hard</div>
     </div>
     <div id="pageChange">
       <a href="./" class="btn btn-scale1-2">Back</a>
       <a href="./game_play.html" class="btn btn-scale1-2">Start</a>
     </div>
   </div>
-  <script src="./script/game_select.js"></script>
+  <script src="./script/game_setup.js"></script>
 </body>
 
 </html>

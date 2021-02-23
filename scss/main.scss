@@ -68,11 +68,9 @@ h4 {
   top: 20px;
   left: 0;
   right: 0;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 5rem auto 0 auto;
   height: 137px;
   width: 484px;
-  margin-bottom: 0rem;
   display: block;
 }
 
@@ -201,7 +199,6 @@ h4 {
 }
 
 .category-container {
-  // border: 1px solid red;
   margin-top: 5rem;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -222,11 +219,10 @@ h4 {
     overflow: hidden;
 
     &-hidden {
-      position: absolute;
+      position: relative;
       background-color: $light-color;
       height: 100%;
-      width: 100%;
-      top: 0;
+      top: -100%;
       left: 100%;
       display: flex;
       flex-direction: column;
@@ -237,8 +233,8 @@ h4 {
     }
 
     &-displayed {
-      position: absolute;
-      width: 100%;
+      background-color: $light-color;
+      position: relative;
       height: 100%;
       top: 0;
       display: flex;
@@ -249,48 +245,39 @@ h4 {
     }
 
     & p {
-      color: $primary-color;
       font-size: 1.9rem;
       font-weight: bold;
       pointer-events: none;
-      // display: none;
-    }
-    .long-text {
-      font-size: 1.4rem;
     }
 
     & i {
-      color: $primary-color;
       font-size: 5rem;
       pointer-events: none;
+    }
+
+    .long-text {
+      font-size: 1.4rem;
     }
 
     &:hover {
       @include btn-transform2;
       .category-displayed {
         transform: translateX(-100%);
-        transition: all 1000ms cubic-bezier(0, 1, 0.5, 1);
+        // transition: all 1000ms cubic-bezier(0, 1, 0.5, 1);
       }
       .category-hidden {
         left: 0;
-        transition: all 1000ms cubic-bezier(0, 1, 0.5, 1);
+        // transition: all 1000ms cubic-bezier(0, 1, 0.5, 1);
       }
     }
     &:active {
       .category-hidden {
         background-color: #e8f4f8;
       }
+      .category-displayed {
+        background-color: #e8f4f8;
+      }
       transform: scale(0.95);
-    }
-
-    &[disabled] {
-      opacity: 0.5;
-    }
-
-    &[disabled]:hover {
-      cursor: not-allowed;
-      box-shadow: none;
-      transform-origin: none;
     }
   }
 }
@@ -319,27 +306,27 @@ h4 {
 .btn-selected {
   background-color: $primary-color;
   color: $light-color;
-  transform: scale(1.15);
-  border-radius: 0;
-  // pointer-events: none;
-  // opacity: 0.4;
+  transition: transform 100ms ease-in;
+  .category-container & {
+    background-color: $primary-color;
+    box-shadow: 0 0 3px 3px rgba(138, 43, 226, 0.4);
+  }
 
   & .category-displayed {
     background-color: $primary-color;
-    color: #fff;
+    color: $light-color;
   }
 
   & .category-hidden {
     background-color: $primary-color;
     color: $light-color;
-    color: #fff;
   }
 
-  & p {
+  p {
     color: $light-color;
   }
 
-  & i {
+  i {
     color: $light-color;
   }
 }
@@ -434,7 +421,7 @@ form {
 
 #endContainer {
   margin: 0 auto;
-  margin-top: 170px;
+  margin-top: 40px;
   max-width: 450px;
   max-height: 650px;
   display: flex;
