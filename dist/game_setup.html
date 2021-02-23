@@ -18,9 +18,13 @@
   <div class="logo"></div>
   <div class="container flex-column" id="setup">
     <div class="setup category-container">
-      <h2>Category</h2>
-      <div class="info">
-        <i class="fas fa-info"></i>
+      <div class="container-header">
+        <h2>Category</h2>
+        <div class="info" data-tooltip=0>
+          <i class="fas fa-info"></i>
+          <span class="tooltip-text">Defaults to 'General Knowledge' <br> <br>(Default is picked when nothing is
+            selected).</span>
+        </div>
       </div>
       <div class="category" data-category="21">
         <div class="category-displayed">
@@ -90,18 +94,25 @@
       </div>
     </div>
     <div class="setup length-container">
-      <h2>Length</h2>
-      <div class="info">
-        <i class="fas fa-info"></i>
+      <div class="container-header">
+        <h2>Length</h2>
+        <div class="info" data-tooltip=1>
+          <i class="fas fa-info"></i>
+          <span class="tooltip-text">Defaults to 'Short'. <br> <br> Short = 10 <br> Medium = 20
+            <br> Long = 30</span>
+        </div>
       </div>
       <div class="length btn" data-length="10">Short</div>
       <div class="length btn" data-length="20">Medium</div>
       <div class="length btn" data-length="30">Long</div>
     </div>
     <div class="setup difficulty-container">
-      <h2>Difficulty</h2>
-      <div class="info">
-        <i class="fas fa-info"></i>
+      <div class="container-header">
+        <h2>Difficulty</h2>
+        <div class="info" data-tooltip=2>
+          <i class="fas fa-info"></i>
+          <span class="tooltip-text">Default to 'Easy'.</span>
+        </div>
       </div>
       <div class="difficulty btn" data-difficulty="easy">Easy</div>
       <div class="difficulty btn" data-difficulty="medium">Moderate</div>
