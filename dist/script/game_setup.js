@@ -51,4 +51,21 @@ for (choice of choicesDifficulty) {
     // console.log(difficulty);
   })
 }
-// console.log(choicesCategory);
+
+let setUpToolTip = () => {
+  let tooltip = '', 
+  toolTipDiv = document.querySelector('.div-tooltip'),
+  toolTipElements = Array.from(document.querySelectorAll('.hover-reveal'));
+
+  let displayToolTip = (e, obj) => {
+    tooltip = obj
+  }
+
+  for (elem of toolTipElements) {
+    elem.addEventListener('mouseenter', evt => { // evt = event object
+      displayToolTip(evt, this);
+    })
+  }
+};
+
+setUpToolTip();

@@ -154,7 +154,7 @@ incrementScore = num => {
     if (count < score) {
       scoreText.style.color = '#77dd77';
       scoreText.innerText = count + 1;
-      setTimeout(scoreUpdate, 50);
+      setTimeout(scoreUpdate, 40);
     } else {
       scoreText.style.color = '#56a5eb';
       scoreText.innerText  = score;

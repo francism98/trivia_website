@@ -7,7 +7,7 @@ const mostRecentScore = localStorage.getItem('mostRecentScore');
 
 // Audio
 const endChime = new Audio();
-endChime.src = './audio/complete.mp3';
+endChime.src = './audio/complete2.mp3';
 
 const highScores = JSON.parse(localStorage.getItem('highScores'))  || [];
 const MAX_HIGH_SCORES = 20;

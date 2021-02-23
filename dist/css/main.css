@@ -247,6 +247,33 @@ h4 {
   justify-items: center;
   margin-bottom: 3rem; }
 
+.info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  border: 0.1rem solid #56a5eb;
+  border-radius: 50%;
+  position: absolute;
+  left: 305px;
+  transition: background-color 300ms ease-in-out; }
+  .length-container .info {
+    left: 275px; }
+  .info i {
+    font-size: 1.3rem;
+    color: #56a5eb;
+    transition: color 300ms ease-in-out; }
+
+.info:hover {
+  background-color: #56a5eb; }
+  .info:hover i {
+    color: #fff; }
+
+.info:active {
+  background-color: #e8f4f8;
+  transform: scale(0.95); }
+
 .category-container {
   margin-top: 5rem;
   display: grid;
@@ -254,31 +281,7 @@ h4 {
   row-gap: 1.5rem; }
   .category-container h2 {
     grid-column-start: 1;
-    grid-column-end: 1; }
-  .category-container .info {
-    align-self: flex-start;
-    justify-self: flex-start;
-    grid-column-start: 2;
-    grid-column-end: 5;
-    width: 26px;
-    height: 26px;
-    border: 0.1rem solid #56a5eb;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    transition: background-color 1000ms cubic-bezier(0, 1, 0.5, 1); }
-    .category-container .info i {
-      font-size: 1.4rem;
-      color: #56a5eb;
-      transition: color 1000ms cubic-bezier(0, 1, 0.5, 1); }
-  .category-container .info:hover {
-    background-color: #56a5eb; }
-    .category-container .info:hover i {
-      color: #fff; }
-  .category-container .info:active {
-    background-color: #e8f4f8;
-    transform: scale(0.95); }
+    grid-column-end: 5; }
   .category-container .category {
     background-color: #fff;
     border: 0.1rem solid #56a5eb;
@@ -367,26 +370,26 @@ h4 {
   .btn-selected i {
     color: #fff; }
 
-#pageChange {
+.pageChange {
   display: flex;
   flex-direction: row; }
-  #pageChange a {
+  .pageChange a {
     text-decoration: none;
     color: #56a5eb;
     font-size: 2.2rem; }
-  #pageChange .back {
+  .pageChange .back {
     width: 120px;
     height: 45px;
     border-radius: 50px; }
-  #pageChange .start {
+  .pageChange .start {
     width: 120px;
     height: 45px;
     margin-left: 20px;
     border-radius: 50px;
     background-color: #56a5eb; }
-    #pageChange .start a {
+    .pageChange .start a {
       color: #fff; }
-    #pageChange .start:active {
+    .pageChange .start:active {
       background-color: #145da0; }
 
 .choice-container {
