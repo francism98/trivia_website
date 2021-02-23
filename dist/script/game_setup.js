@@ -1,10 +1,10 @@
 // // Get body id 
 // var bodyId = document.body.id;
 
-// Global variables
-let category = 9;
-let length = 10;
-let difficulty = 'easy';
+// Set default values for category, length, and difficulty in session storage
+sessionStorage.setItem('category', 9);
+sessionStorage.setItem('length', 10);
+sessionStorage.setItem('difficulty', 'easy');
 
 // Get setup choices
 const choicesCategory = Array.from(document.getElementsByClassName('category'));
