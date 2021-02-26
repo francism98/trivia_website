@@ -8,9 +8,7 @@ const mostRecentScore = localStorage.getItem('mostRecentScore');
 // Audio
 const endChime = new Audio();
 endChime.src = './audio/complete.wav';
-setTimeout(() => {
-  endChime.play();
-}, 500);
+endChime.play();
 
 const highScores = JSON.parse(localStorage.getItem('highScores'))  || [];
 const MAX_HIGH_SCORES = 20;
